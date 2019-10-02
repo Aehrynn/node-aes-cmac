@@ -4,8 +4,8 @@ exports.aesCmac = function (key, message, options) {
   validateKey(key);
   var messageBuffer = validateMessage(message);
   options = options ? options : {};
-  var result = aesCmac(key, messageBuffer);
-  return  options.returnAsBuffer ? result : result.toString('hex');
+  var result = aesCmac(key, messageBuffer, options.padded ? options.padded : false);
+  return options.returnAsBuffer ? result : result.toString('hex');
 };
 
 function validateKey(key) {
